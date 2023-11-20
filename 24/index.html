@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Задание 24</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <h1>Задание 24: таблица данных</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th data-sort="fname">
+                    <button class="descendingOrder">&#11015;</button>
+                    <button class="ascendingOrder"> &#11014;</button>
+                    First Name
+                </th>
+                <th data-sort="lname">
+                    <button class="descendingOrder">&#11015;</button>
+                    <button class="ascendingOrder"> &#11014;</button>
+                    Last Name
+                </th>
+                <th data-sort="tel">
+                    <button class="descendingOrder">&#11015;</button>
+                    <button class="ascendingOrder"> &#11014;</button>
+                    Telephone
+                </th>
+                <th data-sort="address">
+                    <button class="descendingOrder">&#11015;</button>
+                    <button class="ascendingOrder"> &#11014;</button>
+                    Address
+                </th>
+                <th data-sort="city">
+                    <button class="descendingOrder">&#11015;</button>
+                    <button class="ascendingOrder"> &#11014;</button>
+                    City
+                </th>
+                <th data-sort="state">
+                    <button class="descendingOrder">&#11015;</button>
+                    <button class="ascendingOrder"> &#11014;</button>
+                    State
+                </th>
+                <th data-sort="zip">
+                    <button class="descendingOrder">&#11015;</button>
+                    <button class="ascendingOrder"> &#11014;</button>
+                    Zip
+                </th>
+            </tr>
+        </thead>
+        <tbody class="table-body">
+        </tbody>
+    </table>
+    <p class="loading">Данные загружаются...</p>
+    <div class="pagination-wrapper">
+        <button class="prev-page">Показать предыдущую страницу</button>
+        <button class="next-page">Показать следующую страницу</button>
+    </div>
+    <script type="module" src="./24.js"></script>
+</body>
+
+</html>

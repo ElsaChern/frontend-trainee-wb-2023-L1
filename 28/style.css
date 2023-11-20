@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "Segoe UI", sans-serif;
+    background-color: rgb(230, 137, 65);
+    height: max-content;
+}
+
+.task {
+    margin: 20px;
+    text-align: center;
+}
+
+button {
+    background-color: #e6884173;
+    cursor: pointer;
+    border-radius: 50px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.price-list {
+    margin: 30px auto;
+    border-collapse: collapse;
+    line-height: 30px;
+}
+
+.price-list th {
+    font-weight: normal;
+    font-size: 14px;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+.price-list td {
+    border: 1px solid #d8d8d8;
+}
+
+.price-list th,
+.price-list td {
+    padding: 10px 17px;
+}
+
+.price-list .price-number {
+    width: 15px;
+    text-align: center;
+}
+
+.price-list .price-name {
+    width: 422px;
+    color: #000000;
+}
+
+.price-list .price-master {
+    width: 306px;
+}
+
+.price-list .price-cost {
+    width: 135px;
+}

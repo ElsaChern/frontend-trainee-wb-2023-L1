@@ -1,0 +1,77 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "Segoe UI", sans-serif;
+    background-color: rgb(230, 137, 65);
+    height: max-content;
+}
+
+.search-container {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 20%;
+}
+
+.task {
+    margin: 0 auto;
+    text-align: center;
+}
+
+form {
+    position: relative;
+    margin-top: 20px;
+}
+
+::placeholder {
+    color: rgb(0, 0, 0, 0.5);
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.search-input {
+    font-size: 18px;
+    line-height: 24px;
+    color: rgb(5, 5, 5);
+    width: 100%;
+    height: 48px;
+    padding-left: 20px;
+    border: none;
+    border-radius: 36px;
+    background: rgba(255, 255, 255);
+    opacity: 70%;
+    outline: none;
+}
+
+.options {
+    margin: 2px -6px;
+    border-radius: 36px;
+    opacity: 70%;
+    text-align: start;
+    padding: 8px 10px;
+}
+
+.options li {
+    padding: 7px 10px;
+    list-style-type: none;
+    border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+    cursor: pointer;
+}
+
+.search-btn {
+    position: absolute;
+    top: 0px;
+    right: -22px;
+    background-color: #e6884173;
+    border: 1px solid #0e0e0e;
+    cursor: pointer;
+    opacity: 80%;
+    padding: 17px;
+    border-radius: 36px;
+}
+
+.error {
+    display: none;
+    text-align: center;
+    color: rgb(145, 36, 36);
+}
