@@ -17,9 +17,13 @@ const functionArray = [
 
 // Решение:
 const returnAllFuncResults = (funcArr) => {
+  // Из функции возвращаем новую функцию
   return (newFunction = () => {
+    // Которая внутри себя создает массив, где и будут хранится результаты вызовов наших функций
     const result = [];
+    // Проходим циклом по каждой функции из массива функций
     for (let func of funcArr) {
+      // И результат их выполнения записываем в массив result
       result.push(func());
     }
     return result;

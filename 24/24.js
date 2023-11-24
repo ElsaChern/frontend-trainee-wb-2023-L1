@@ -7,19 +7,24 @@
 
 // Решение:
 
-// Сперва находим необходимые элементы: тело таблицы (куда помещать инф-ию) и контейнер пагинации таблицы
+// Сперва находим необходимые элементы:
 const table = document.querySelector(".table");
 const tableBody = document.querySelector(".table-body");
 const pagination = document.querySelector(".pagination-wrapper");
 const loading = document.querySelector(".loading");
 const nextPage = document.querySelector(".next-page");
 const prevPage = document.querySelector(".prev-page");
+// Установим переменные для пагинации:
+// Количество строк на странице
 const rowsPerPage = 50;
+// Текущая страница
 let currentPage = 1;
+// Общее количество страниц для таблицы
 let maxPage = 1;
 
 // Создадим переменную, в которой мы будем хранить все данные полученные с сервера:
 let tableData = []; // (1000) [{…}, {…}, {…}, {…}, …]
+// Массив для сортировки строк в таблице
 let sortedData = [];
 
 // Запишем в переменную ссылку по которой будем извлекать данные
@@ -38,31 +43,39 @@ const featchTableData = async () => {
   }
 };
 
+// Данная функия будет отрабатывать при первой загрузке страницы (откроется первая страница)
+// А также при нажатии на кнопки "вперед"/ "назад"
 const goToPage = (page) => {
+  // Установим состояния для кнопок
   nextPage.disabled = page === maxPage ? true : false;
   prevPage.disabled = page === 1 ? true : false;
 
   currentPage = page;
+  // При обновлении страниц будем обновлять список данных
   addDataToTable();
 };
 
+// Обработчик событий при клике на кнопки "вперед"/ "назад"
 prevPage.addEventListener("click", () => goToPage(currentPage - 1));
 nextPage.addEventListener("click", () => goToPage(currentPage + 1));
 
+// Найдем все кнопки для каждой колонки
 const headers = document.querySelectorAll("th");
 headers.forEach((header) => {
   let upBtn = header.querySelector(".ascendingOrder");
   let downBtn = header.querySelector(".descendingOrder");
   let rowToSort = header.dataset.sort;
 
+  // Добавим обработчик событий на них и будем обращаться к sortData(), чтобы показать отсортированные строки
   upBtn.addEventListener("click", () => sortData(1));
   downBtn.addEventListener("click", () => sortData(-1));
 
+  // Сортируем данные с помощью метода .sort()
   const sortData = (coef) => {
     sortedData = tableData.sort((a, b) => {
       return a[rowToSort] > b[rowToSort] ? 1 * coef : -1 * coef;
     });
-
+    // При сортировке будем всегда возвращаться на первую страницу (чтобы сортировка начиналась сначала)
     goToPage(1);
   };
 });

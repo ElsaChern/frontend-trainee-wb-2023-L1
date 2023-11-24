@@ -14,9 +14,11 @@ const loadImg = async (url) => {
     }
     console.log("Картинка заргужена");
   } catch (error) {
-    console.log("Возникла проблема с вашим fetch запросом: ", error.message);
+    console.log("Возникла проблема при загрузке изображения: ", error.message);
   }
 };
+
+loadImg("https://www.imgonline.com.ua/examples/bee-on-daisy.jpg");
 
 // fetch("https://www.imgonline.com.ua/examples/bee-on-daisy.jpg").then(
 //   (response => {
@@ -41,5 +43,3 @@ const loadImg = async (url) => {
 //     img.src = url;
 //   });
 // };
-
-// loadImg("https://www.imgonline.com.ua/examples/bee-on-daisy.jpg");

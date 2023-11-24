@@ -26,7 +26,7 @@ const repeatWrite = () => {
     count++;
     repeatWrite();
   } catch (error) {
-    // Получим, что document.write() был вызван 9668 раз
+    // Получим, что document.write() был вызван 9668 раз или 8976 ??
     document.write(`<span>document.write() был вызван ${count} раз</span>`);
   }
 };

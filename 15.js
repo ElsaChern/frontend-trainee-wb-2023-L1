@@ -4,23 +4,23 @@
 // и возвращает результат выполнения.
 
 // Решение:
-
+const url = "http://www.filltext.com/?rows=2&fname=%7BfirstName%7D";
 // Асинхронная функция
-const fetchUsers = async () => {
+const fetchData = async () => {
   // Добавляем конструкцию try-catch, которая обработает возможные ошибки.
   // try "пытается" выполнить код внутри себя
   try {
     // Используем await для ожидания выполнения запроса и получения данных с сервера
-    const response = await fetch("https://reqres.in/api/users");
+    const response = await fetch(url);
     // Парсим полученный ответ с помощью метода json(), который есть у объекта response.
     // Ответ от сервера может занять время, так что его чтение стоит сделать асинхронным.
     const data = await response.json();
     // Выводим полученный данные в консоль
-    console.log(data.data);
+    console.log("Data: ", data);
     // Если произойдет ошибка catch ее "поймает"
   } catch (error) {
     console.log("Something went wrong");
   }
 };
 
-fetchUsers(); // (6) [{…}, {…}, {…}, {…}, {…}, {…}]
+fetchData(); // [{…}, {…}]

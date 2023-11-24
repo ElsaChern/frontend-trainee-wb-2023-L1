@@ -9,11 +9,25 @@
 
 // Решение:
 
+// Ассинхронная функция принимает массив функций
 const callingFunctionsInOrder = async (funcArr) => {
+  // Проходим по каждой функции из переданного массива
   for (const func of funcArr) {
-    await func();
+    // Вызываем по очереди каждую функцию из массива.
+    await new Promise((resolve) => {
+      setTimeout(() => resolve(func()));
+    });
   }
 };
+
+// Было :
+// const callingFunctionsInOrder = async (funcArr) => {
+//   // Проходим по каждой функции из переданного массива
+//   for (const func of funcArr) {
+//     // Вызываем по очереди каждую функцию из массива.
+//     await func()
+//     };
+//   }
 
 // Массив функций:
 const functions = [
@@ -24,7 +38,7 @@ const functions = [
     Promise.resolve().then(() => console.log("second function"));
   },
   function () {
-    setTimeout(() => console.log("third function"), 1000);
+    setTimeout(() => console.log("third function"));
   },
   function () {
     console.log("fourth function");
