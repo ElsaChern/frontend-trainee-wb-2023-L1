@@ -18,4 +18,6 @@ const moveElement = (duration, transform, delay) => {
 };
 
 // Добавим обработчик события на кнопку и запустим функцию для анимации
-startBtn.addEventListener("click", moveElement("3s", "scale(3)", "1s"));
+startBtn.addEventListener("click", () => {
+  moveElement("3s", "scale(3)", "1s");
+});

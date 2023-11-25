@@ -5,24 +5,10 @@
 // что промис должен быть успешно выполнен (resolved) с данными об изображении после того, как изображение будет загружено.
 
 // Решение:
+const button = document.querySelector("#button");
+const imgBox = document.querySelector(".img");
 
-// const loadImg = async (url) => {
-//   try {
-//     const response = await fetch(url);
-//     if (!response.ok) {
-//       throw new Error("Картинка не загружена");
-//     }
-//     console.log("Картинка загружена");
-//   } catch (error) {
-//     console.log("Возникла проблема при загрузке изображения: ", error.message);
-//   }
-// };
-
-fetch("https://www.imgonline.com.ua/examples/bee-on-daisy.jpg").then(
-  (response) => {},
-);
-
-// Функция, которая принимает URL изображения
+// Функция, которая принимает URL изображение
 const loadImg = (url) => {
   // Она возвращает промис, с аргументами resolve и reject
   return new Promise((resolve, reject) => {
@@ -37,7 +23,23 @@ const loadImg = (url) => {
     img.onerror = () => {
       reject(img);
     };
+    // Зададим изображению url
     img.src = url;
   });
 };
-loadImg("https://www.imgonline.com.ua/examples/bee-on-daisy.jpg");
+
+// При клике на кнопку запустим функцию
+button.addEventListener("click", async () => {
+  try {
+    const result = await loadImg(
+      "https://cs.pikabu.ru/post_img/2013/09/15/5/1379228184_1479873073.jpg",
+    );
+    // Сообщаем в консоле об успешной загрузке
+    console.log("Картинка загружена");
+    // Добавляем картинку в контейнер
+    imgBox.appendChild(result);
+  } catch (error) {
+    // В случае ошибки также сообщаем об этом в консоле
+    console.log("Возникла проблема при загрузке изображения: ", error.message);
+  }
+});
