@@ -75,7 +75,7 @@ headers.forEach((header) => {
     sortedData = tableData.sort((a, b) => {
       return a[rowToSort] > b[rowToSort] ? 1 * coef : -1 * coef;
     });
-    // При сортировке будем всегда возвращаться на первую страницу (чтобы сортировка начиналась сначала)
+    // При сортировке будем всегда возвращаться на первую страницу
     goToPage(1);
   };
 });

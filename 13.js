@@ -30,8 +30,8 @@ class Rectangle extends Shape {
   // Для расчета необходимы длина и ширина прямоугольника
   constructor(width, length) {
     // Вызов ключевого слово "super" для вызова функций, принадлежащих родителю Shape.
-    super();
-    this.name = "Rectangle";
+    let name = "Rectangle";
+    super(name);
     this.width = width;
     this.length = length;
   }
@@ -49,8 +49,8 @@ class Rectangle extends Shape {
 class Circle extends Shape {
   // Для расчета необходим радиус круга
   constructor(radius) {
-    super();
-    this.name = "Circle";
+    let name = "Circle";
+    super(name);
     this.radius = radius;
   }
   // Расчет площади круга (использованы: число ПИ и квадрат радиуса)
@@ -68,8 +68,8 @@ class Triangle extends Shape {
   // Так как существует несколько способов расчета прощади и периметра треугольника -
   // возьмем самый простой для передачи параметров -  3 стороны треугольника
   constructor(a, b, c) {
-    super();
-    this.name = "Triangle";
+    let name = "Triangle";
+    super(name);
     this.a = a;
     this.b = b;
     this.c = c;

@@ -7,8 +7,8 @@
 // Решение:
 
 const sortArray = (arr) => {
-  // sort() сортирует элементы массива и возвращает отсортированный массив.
-  // Порядок сортировки по умолчанию соответствует порядку кодовых точек Unicode.
+  // .sort() сортирует элементы массива и возвращает отсортированный массив.
+  // Порядок сортировки по умолчанию соответствует порядку символов в таблице Unicode.
   return arr.sort((a, b) => {
     // В случае, если возраста у обьектов равны
     if (a.age === b.age) {
@@ -20,13 +20,16 @@ const sortArray = (arr) => {
   });
 };
 
-sortArray(
-  (array = [
-    { name: "John", age: 25 },
-    { name: "Rick", age: 13 },
-    { name: "Morty", age: 46 },
-    { name: "Martin", age: 63 },
-    { name: "Jack", age: 46 },
-    { name: "Kit", age: 11 },
-  ]),
+console.log(
+  sortArray(
+    (array = [
+      { name: "John", age: 25 },
+      { name: "Rick", age: 13 },
+      { name: "Morty", age: 46 },
+      { name: "Martin", age: 63 },
+      { name: "Jack", age: 46 },
+      { name: "Kit", age: 11 },
+      { name: "Zorro", age: 46 },
+    ]),
+  ),
 );

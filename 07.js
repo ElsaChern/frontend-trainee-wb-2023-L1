@@ -25,9 +25,9 @@ const callingFunctionsInOrder = async (funcArr) => {
 //   // Проходим по каждой функции из переданного массива
 //   for (const func of funcArr) {
 //     // Вызываем по очереди каждую функцию из массива.
-//     await func()
-//     };
+//     await func();
 //   }
+// };
 
 // Массив функций:
 const functions = [

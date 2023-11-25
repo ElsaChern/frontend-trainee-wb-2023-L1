@@ -28,6 +28,3 @@ const createElement = ([number, serviceName, master, price]) => {
 button.addEventListener("click", () => {
   createElement(["2", "Заточка когтей", "Грумер", "300 руб."]);
 });
-
-// https://learn.javascript.ru/template-element
-// https://developer.mozilla.org/ru/docs/Web/HTML/Element/template

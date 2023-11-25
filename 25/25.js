@@ -9,7 +9,7 @@ const addNewElement = (element, styles, text) => {
   // Все необходимые элементы будем помещать в родильский контейнер - обозначим его:
   const container = document.querySelector(".container");
 
-  // Созданим новый элемент исходя из пришедшего в функцию параметра
+  // Создадим новый элемент исходя из пришедшего в функцию параметра
   const newElement = document.createElement(element);
   // Так как все стили записаны в объект, а для установки стиля нам нужны пары ключ-значение воспользуемся методом Object.entries()
   // Метод вернет нам массивы типа ['backgroundColor', 'green']

@@ -18,7 +18,7 @@ const token =
   "6a8515606a8515606a85156024699370cc66a856a8515600fdb61c31ecd16c5fc22a0dd";
 const domain = "we_use_js";
 const groupID = 66084425;
-let offset = 1;
+let offset = JSON.parse(localStorage.getItem("offset")) || 1;
 const count = 5;
 let posts = JSON.parse(localStorage.getItem("posts")) || [];
 let postsToRender = [];
@@ -61,6 +61,7 @@ const getPosts = async () => {
     postsToRender = data.response.items;
     posts.push(...postsToRender);
     offset += 5;
+    localStorage.setItem("offset", JSON.stringify(offset));
     localStorage.setItem("posts", JSON.stringify(posts));
   } catch (error) {
     (error) => console.log("error", error);

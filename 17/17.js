@@ -6,7 +6,7 @@
 
 // Решение:
 
-// Сперва находим необходимые элементы: поле ввода, кнопку поиска, варианты адресов и поле для ошибки (если ввод некорректен):
+// Сперва находим необходимые элементы: поле ввода, кнопку поиска, варианты адресов и поле для отображения ошибки:
 const input = document.querySelector("#address");
 const searchBtn = document.querySelector("#search");
 const addressOptions = document.querySelector("#options");
@@ -77,7 +77,7 @@ const throttle = (func, timeout) => {
   };
 };
 
-// Прописываем функцию для случая, когда пользователь вводить что-то в инпут и нам нужно получить массив подходящих адресов
+// Прописываем функцию для случая, когда пользователь вводит что-то в инпут и нам нужно получить массив подходящих адресов
 const inputHandler = async () => {
   // Берем значение текущего инпута
   const inputText = input.value;
@@ -87,9 +87,8 @@ const inputHandler = async () => {
   showOptions(optionsList);
 };
 
-// Слушатели событий для ввода в инпут
-input.addEventListener("input", debounce(inputHandler, 450));
-input.addEventListener("input", throttle(inputHandler, 450));
+// Слушатель событий для ввода в инпут
+input.addEventListener("input", throttle(debounce(inputHandler, 450)));
 
 // Функция, для отрисовки пунктов списка, в которую приходит массив объектов
 const showOptions = (optionsArr) => {

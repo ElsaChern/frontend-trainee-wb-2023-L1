@@ -25,7 +25,7 @@ const getFormData = () => {
 };
 
 form.addEventListener("submit", (e) => {
-  // Отменяем перезагрузку страницы
+  // Отменяем отправку формы
   e.preventDefault();
   getFormData();
 });

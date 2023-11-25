@@ -10,12 +10,12 @@ const elem = document.querySelector(".animate");
 const startBtn = document.querySelector("#btn");
 
 // В функцию передадим необходимые параметры
-function moveElement(duration, transform, delay) {
+const moveElement = (duration, transform, delay) => {
   // И установим их для анимированного элемента
   elem.style.transitionDuration = duration;
   elem.style.transitionDelay = delay;
   elem.style.transform = transform;
-}
+};
 
 // Добавим обработчик события на кнопку и запустим функцию для анимации
-startBtn.addEventListener("click", moveElement("3s", "scale(3.4)", "1s"));
+startBtn.addEventListener("click", moveElement("3s", "scale(3)", "1s"));

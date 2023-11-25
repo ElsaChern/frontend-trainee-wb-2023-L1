@@ -3,18 +3,18 @@
 
 // Решение:
 
-// В данную функцию будет приходить значение
+// В данную функцию будет приходить что-то
 const stringifyValue = (value) => {
-  // Которое изначально будет равно пустой строке
+  // Заведем пустую переменную для вывода результата
   let strValue = "";
 
   // Проверяем данное значение на соответствие типам:
-  // Если тип - обьект:
+  // Если тип - обьект
   if (typeof value === "object") {
     // Массив, при переводе в строку отображается в квадратных скобках
     if (Array.isArray(value)) {
       strValue += "[";
-      // В случае, если мы имеет более глубокую вложенность - запускаем stringifyValue рекурсивно
+      // Каждый элемент массива мы отдельно переводим в string с помощью функции stringifyValue
       newArr = value.map((arrElement) => stringifyValue(arrElement));
 
       strValue += newArr.join(",") + "]";
@@ -24,6 +24,7 @@ const stringifyValue = (value) => {
       // Дата при переводе в строку отображается специализированно с помощью метода .toISOString()
     } else if (value instanceof Date) {
       strValue += `"${value.toISOString()}"`;
+      // иначе воспринимаем value как обычный объект вида {key: value}
     } else {
       strValue += convertToString(value);
     }
@@ -59,7 +60,7 @@ const convertToString = (object) => {
     if (typeof value === "undefined" || typeof value === "symbol") {
       return;
     }
-    // К переменную str начнем добавлять данные,
+    // В переменную str начнем добавлять данные,
     // Передав каждое значение функции stringifyValue() для валидации
     str += `"${key}":${stringifyValue(value)},`;
   });
@@ -69,13 +70,14 @@ const convertToString = (object) => {
     // Проще всего обрезать строку с помощью .slice
     str = str.slice(0, -1);
   }
-  //  и добавить необходимые символы в конце
+  //  и добавить необходимый символ в конце
   str += "}";
 
   return str;
 };
 
-// Пример JSON объекта
+// Пример JSON объекта со всеми возможными (на мой взгляд) вариантами входных данных.
+// Будем считать, что на вход мы получаем валидный JSON объект
 const example = {
   number: 53,
   string: "hello",
@@ -99,5 +101,7 @@ const example = {
 
 // Проверка на соответствие методу JSON.stringify()
 a = JSON.stringify(example);
+console.log(a);
 b = convertToString(example);
-a === b;
+console.log(b);
+console.log(a === b);

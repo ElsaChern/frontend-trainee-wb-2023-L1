@@ -11,7 +11,7 @@ const endOfYear = (data) => {
   const difference = moment.duration(endOfData.diff(now));
   // Получим разницу в днях между двумя датами
   const days = difference.asDays();
-  // Вернем результат количества дней, округленный в мельшую сторону (так как речь идет о кол-ве дней)
+  // Вернем результат количества дней, округленный в меньшую сторону (так как речь идет о кол-ве дней)
   return Math.floor(days);
 };
 
