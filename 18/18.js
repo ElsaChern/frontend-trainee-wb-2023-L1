@@ -2,31 +2,30 @@
 // Подсчитать максимальный объем данных, который можно записать в localStorage вашего браузера.
 
 // Решение:
-const button = document.querySelector("#button");
-const answer = document.querySelector(".answer");
-
-const megaByte = 1024 * 1024;
 
 const maximumVolume = () => {
-  const key = 1;
+  // Заведем переменные ключ, значение, которые будем добавлять в localStorage
+  let key = "1";
   const value = "v";
+  // Перед тем, как запустить цикл, убедимся, что localStorage пуст
   localStorage.clear();
+  // Запустим бесконечный цикл
   try {
-    if (true) {
+    while (true) {
+      // И на каждой его итерации будем добавлять ключ, значение в localStorage
       localStorage.setItem(key, value);
+      // И увеличивать количество символов в ключе на единицу
       key += 1;
     }
+    // Когда localStorage переполнится возникнет ошибка
   } catch {
-    console.log("localStorage переполнен");
-    //распарсим в строку данные из localStorage
-    const string = JSON.stringify(localStorage);
-    //вернем длину строки
-    answer.textContent = `Максимальный объем данных равен ${
-      string.length
-    } или ${string.length / megaByte} мегабайт`;
+    // Подсчитаем длину заполненного localStorage
+    const length = JSON.stringify(localStorage).length;
+
+    localStorage.clear();
+
+    return length;
   }
 };
 
-button.addEventListener("click", () => {
-  maximumVolume();
-});
+export default maximumVolume;

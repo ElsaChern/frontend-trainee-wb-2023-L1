@@ -2,35 +2,22 @@
 // Посчитайте сколько раз можно вызвать функцию document.write() внутри document.write(). Объясните результат.
 
 // Решение:
-// Теория: document.write вставляет HTML-код на страницу сразу после себя.
-// Точнее говоря, сразу после тега <script>, внутри которого он расположен.
-// И только в том случае, если документ еще не был загружен полностью.
-
-// Так как нам нужно вызвать document.write() внутри document.write() попробуем передать в записанный у html скрипт еще одну такую же строку
-// Тем самым получим рекурсию
-
-// const repeatWrite = () => {
-//   document.write(repeatWrite());
-// };
-
-// repeatWrite();
-
-// В консоле увидим ошибку, "Uncaught RangeError: Maximum call stack size exceeded" - наш стэк переполнился
-// Чтобы подсчитать через сколько вызовов он переполнился - заведем переменную count
 
 let count = 0;
 
-const repeatWrite = () => {
+// Раньше ограничения на максимальную вложенность document.write() не было, но
+// в один момент разработчики нашли уязвимость, с помощью которой можно было сломать браузер и решили
+// установить максимальную вложенность равную 21.
+// Mozilla firefox - 20 (https://searchfox.org/mozilla-central/source/dom/base/Document.cpp#444)
+// Google Chrome - 21 (https://github.com/WebKit/webkit/blob/main/Source/WebCore/dom/Document.cpp#L391)
+function tryDocumentWrite() {
   try {
-    document.write();
     count++;
-    repeatWrite();
-  } catch (error) {
-    // Получим, что document.write() был вызван 9668 раз или 8976 ??
-    document.write(`<span>document.write() был вызван ${count} раз</span>`);
+    document.write("<script>tryDocumentWrite();</script>");
+  } catch (e) {
+    console.log(e);
   }
-};
+}
 
-repeatWrite();
-
-//
+tryDocumentWrite();
+console.log("Максимальная вложенность document.write():", count - 1); // 21

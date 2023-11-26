@@ -8,6 +8,8 @@
 
 // Решение:
 // Примечание: обход CORS в данном задании реализован через расширение Allow CORS: Access-Control-Allow-Origin в браузере
+import maximumVolume from "../18/18.js";
+
 // Найдем контейнер для постов, контейнер виджета и сообщение о загрузке на странице:
 const mainContauner = document.querySelector(".container");
 const postsContainer = document.querySelector(".content");
@@ -23,6 +25,20 @@ const count = 5;
 let posts = JSON.parse(localStorage.getItem("posts")) || [];
 let postsToRender = [];
 let group = JSON.parse(localStorage.getItem("group")) || {};
+let maxLSSize = Number(localStorage.getItem("lsSize"));
+
+const addPostsToLocalStorage = () => {
+  let currentLSSize = JSON.stringify(localStorage).length;
+  let newDataSize = JSON.stringify(postsToRender).length;
+
+  if (currentLSSize + newDataSize >= maxLSSize) {
+    posts = posts.slice(count * 2);
+  }
+
+  localStorage.setItem("posts", JSON.stringify(posts));
+  currentLSSize = JSON.stringify(localStorage).length;
+  console.log("Объем данных в Local Storage: ", currentLSSize, "/", maxLSSize);
+};
 
 // Функция для получения информации о группе:
 const getGroup = async () => {
@@ -60,9 +76,9 @@ const getPosts = async () => {
     const data = await response.json();
     postsToRender = data.response.items;
     posts.push(...postsToRender);
-    offset += 5;
+    offset += count;
     localStorage.setItem("offset", JSON.stringify(offset));
-    localStorage.setItem("posts", JSON.stringify(posts));
+    addPostsToLocalStorage();
   } catch (error) {
     (error) => console.log("error", error);
   }
@@ -157,8 +173,21 @@ const renderPosts = async () => {
   });
 };
 
+// В этой функции мы объявляем максимальный размер LS. Считать это значение будем только один раз
+// в самом начале работы функции и сохранять его в LS, так как в рамках одного браузера это значение меняться не будет,
+// а чтобы его посчитать нужно полностью очищать LS, но это не очень удобно
+const calculateMaxLSSize = () => {
+  if (maxLSSize === 0) {
+    // Считаем максимальный размер LS с помощью функции из задачи 18
+    maxLSSize = maximumVolume();
+    // Сохраняем значение в LS
+    localStorage.setItem("lsSize", JSON.stringify(maxLSSize));
+  }
+};
+
 const initialize = async () => {
   loading.style.display = "block";
+  calculateMaxLSSize();
 
   await getGroup();
 
